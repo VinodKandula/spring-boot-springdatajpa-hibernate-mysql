@@ -24,7 +24,7 @@ Import as *Existing Maven Project* and run it as *Spring Boot App*.
 
 ### Usage
 
-- Run the application and go on http://localhost:8080/
+- Run the application and go on `http://localhost:8080/`
 - Use the following urls to invoke controllers methods and see the interactions
   with the database:
   	* `/student/create?name=[student-name]&teamName=[team-name]`: create a new Student with an auto-generated id and name as passed values. 		If teamName query param is passed, the team is referenced if the team exists.

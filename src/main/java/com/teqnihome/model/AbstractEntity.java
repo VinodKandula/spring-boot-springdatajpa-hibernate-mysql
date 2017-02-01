@@ -3,6 +3,7 @@
  */
 package com.teqnihome.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -18,8 +19,9 @@ import org.springframework.data.annotation.LastModifiedDate;
  * @author vinod
  *
  */
+@SuppressWarnings("serial")
 @MappedSuperclass
-public abstract class AbstractEntity {
+public abstract class AbstractEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
