@@ -12,6 +12,8 @@ import com.teqnihome.service.generic.GenericService;
  */
 public interface StudentService extends GenericService<Student, Long>{
 
-	public Student findByName(String name); 
+	public Student findByName(String name);
+	
+	public Student findByNameLastName(String name, String lastName);
 		
 }

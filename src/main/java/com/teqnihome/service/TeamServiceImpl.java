@@ -51,4 +51,10 @@ public class TeamServiceImpl extends GenericServiceImpl<Team, Long> implements T
 		return teamRepository.findByName(name);
 	}
 
+	@Override
+	public Team queryDSL(String expression) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

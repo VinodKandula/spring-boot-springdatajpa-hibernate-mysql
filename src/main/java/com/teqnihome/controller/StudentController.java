@@ -1,18 +1,27 @@
 package com.teqnihome.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysema.query.types.Predicate;
 import com.teqnihome.model.Student;
 import com.teqnihome.model.Team;
+import com.teqnihome.repository.StudentRepository;
 import com.teqnihome.service.StudentService;
 import com.teqnihome.service.TeamService;
 
@@ -88,6 +97,8 @@ public class StudentController {
 
 			studentService.update(student);
 		} catch (Exception ex) {
+			ex.printStackTrace();
+			
 			return "Error updating the student: " + ex.toString();
 		}
 		return "Student succesfully updated!";
@@ -115,6 +126,25 @@ public class StudentController {
 			return "Student not found";
 		}
 		return "The student info is: " + student + "\n team is: "+student.getTeam();
+	}
+	
+	@Resource
+	private StudentRepository studentRepository;
+	
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public String filter(@QuerydslPredicate(root = Student.class) Predicate predicate, Pageable pageable,
+			@RequestParam MultiValueMap<String, String> parameters) {
+		
+		String result = "";
+		
+		for(Iterator<Student> studentItr = studentRepository.findAll(predicate, pageable).iterator(); studentItr.hasNext();) {
+			Student student = studentItr.next();
+			System.out.println("$$$$$$$$$$$$ : "+student.toString());
+			result += student.toString();
+		}
+		
+		return result;
 	}
 
 }

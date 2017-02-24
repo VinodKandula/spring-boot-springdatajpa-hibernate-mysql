@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 
 /**
  * @author vinod
@@ -27,6 +28,8 @@ public class Student extends AbstractEntity implements Serializable {
 
 	@NotNull
 	private String name;
+	
+	private String lastName;
 
 	@ManyToOne(optional = true, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	private Team team;
@@ -63,10 +66,17 @@ public class Student extends AbstractEntity implements Serializable {
 		this.team = team;
 	}
 
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	@Override
 	public String toString() {
-		return "Student [name=" + name + ", id=" + id + ", createdDate=" + createdDate + ", modifiedDate="
-				+ modifiedDate + "]";
+		return "Student [name=" + name + ", lastName=" + lastName + ", team=" + team + "]";
 	}
 
 }

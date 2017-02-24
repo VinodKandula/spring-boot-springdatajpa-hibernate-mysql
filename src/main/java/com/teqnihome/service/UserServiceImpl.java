@@ -54,4 +54,10 @@ public class UserServiceImpl extends GenericServiceImpl<User, Long> implements U
 		return userRepository.findByEmail(email);
 	}
 
+	@Override
+	public User queryDSL(String expression) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

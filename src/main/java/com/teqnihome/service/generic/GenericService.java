@@ -23,4 +23,6 @@ public interface GenericService<T, ID extends Serializable> {
 	public T update(T entity) throws EntityNotFoundException;
 
 	public T delete(long id) throws EntityNotFoundException;
+	
+	public T queryDSL(String expression);
 }
